@@ -1,0 +1,584 @@
+/* --- Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ستايل شريط السكرول الجانبي */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050A18; /* نفس لون خلفية موقعك */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E6B36E; /* اللون الدهبي */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5985a; /* درجة أغمق شوية عند اللمس */
+}
+
+body {
+    background-color: #050A18; /* كحلي دافي وأعمق */
+    color: #FDFCF8; 
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    transition: background 0.5s ease;
+}
+
+/* الاسم كإمضاء في ركن الصفحة */
+.brand-signature {
+    position: absolute; /* بيفضل في مكانه أول ما تفتحي الصفحة */
+    top: 40px;
+    left: 10%;
+    z-index: 1000;
+}
+
+.brand-signature a {
+    font-family: 'Momo Signature', cursive; /* اسم الخط الجديد */
+    font-size: 20px; /* كبرناه شوية عشان تفاصيله تبان */
+    font-weight: 200; /* الخطوط دي بتبقى شيك وهي خفيفة */
+    color: #FDFCF8;
+    text-decoration: none;
+    letter-spacing: normal; /* الخطوط اليدوية مش بتحتاج تقريب حروف */
+    transition: 0.5s ease;
+    display: inline-block;
+}
+
+.brand-signature .dot {
+    color: #E6B36E; /* النقطة الدهبية لسه موجودة */
+    font-size: 50px; /* كبرنا النقطة كمان */
+    font-family: 'Inter', sans-serif; /* النقطة هنخليها بخط عادي عشان تكون مدورة بجد */
+    margin-left: 0; /* قرّبي النقطة من الاسم اليدوي */
+}
+
+.brand-signature a:hover {
+    color: #E6B36E; /* ممكن نخليه كله دهبي عند الهوفر */
+    text-shadow: 0 0 15px rgba(230, 179, 110, 0.4);
+}
+
+/* الانيميشن عند السكرول */
+/* الحالة الابتدائية: العنصر مخفي ونازل لأسفل 30 بكسل */
+/* الحالة الافتراضية للعناصر اللي هتحركيها */
+/* الكود الأساسي للأنيميشن */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* الحل الإجباري لصفحة See More: أي حاجة واخدة كلاس reveal جواها تظهر فوراً */
+.all-works-section .reveal, 
+.projects-grid .reveal,
+.see-more-page .reveal { 
+    opacity: 1 !important; 
+    transform: translateY(0) !important;
+    transition: none !important;
+}
+
+/* إخفاء الكروت اللي واخدة الكلاس ده في صفحه ال see more*/
+.hidden-card {
+    display: none !important;
+}
+
+/* ستايل زرار See More */
+.load-more-container {
+    display: flex;            /* تفعيل نظام المرونة */
+    justify-content: center;   /* توسيط الزرار أفقياً */
+    align-items: center;       /* للتأكيد على التوسيط الرأسي لو فيه مساحة */
+    width: 100%;               /* عشان يفرش بعرض الصفحة ويقدر يسنتر */
+    margin-top: 60px;          /* مسافة بين الزرار وآخر كارت */
+    padding-bottom: 80px;      /* مسافة أمان تحت الزرار */
+}
+
+.load-more-btn {
+    background: transparent;
+    color: #E6B36E; /* الدهبي بتاعنا */
+    border: 1px solid #E6B36E;
+    padding: 15px 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.load-more-btn:hover {
+    background: #E6B36E;
+    color: #050A18; /* لون الخلفية الكحلي */
+    box-shadow: 0 0 20px rgba(230, 179, 110, 0.4);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10%;
+    position: relative;
+    /* ده اللي هيخلي النور يلحق الماوس بنعومة */
+    background: radial-gradient(circle at center, rgba(230, 179, 110, 0.05) 0%, transparent 70%);
+}
+
+.hero-content {
+    transition: transform 0.1s ease-out; /* نعومة لحركة الماوس */
+}
+
+.hero-content h1 {
+    font-size: 70px;
+    line-height: 1.2;
+    letter-spacing: -2px;
+    font-weight: 700;
+}
+
+/* لون الكلمات المتغيرة (Solar Yellow) */
+#dynamic-word {
+    color: #E6B36E; /* ذهبي رملي ناعم */
+    font-style: italic; /* لمسة رقيقة */
+    font-family: 'Playfair Display', serif; /* لو حابة تخليه زي موقع النظارات */
+    transition: opacity 0.6s ease-in-out;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #AAA; /* رمادي فاتح للوصف */
+    margin-top: 30px;
+}
+
+/* الزرار (Solar Yellow) */
+.cta-btn {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 14px 35px;
+    background-color: transparent;
+    border: 1px solid rgba(230, 179, 110, 0.3); /* خط رفيع وناعم */
+    color: #E6B36E;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 2px;
+    border-radius: 50px; /* شكل بيضاوي أنعم من المستطيل */
+    transition: all 0.4s ease;
+}
+
+.cta-btn:hover {
+    background-color: rgba(230, 179, 110, 0.1);
+    border-color: #E6B36E;
+    transform: translateY(-3px); /* حركة طلوع خفيفة */
+}
+
+/* للموبايل */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 40px;
+    }
+}
+
+.about-section {
+    padding: 160px 10%;
+    background-color: #050A18;
+    text-align: left; /* المحاذاة لليسار بتدي شكل مودرن أكتر للإنجليزي */
+}
+
+.about-container {
+    max-width: 1000px;
+}
+
+.reveal-text {
+    font-size: clamp(32px, 6vw, 64px); /* خط ضخم بياخد العين */
+    font-weight: 300; /* خط رفيع عشان النعومة */
+    line-height: 1.2;
+    color: #FDFCF8;
+    margin-bottom: 60px;
+}
+
+.italic-gold {
+    color: #E6B36E;
+    font-family: 'Playfair Display', serif; /* تأكدي إنك ضايفة الخط ده في الـ HTML */
+    font-style: italic;
+    font-weight: 400;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-left: 1px solid rgba(230, 179, 110, 0.3); /* خط رأسي ناعم عالشمال */
+    padding-left: 30px;
+    margin-bottom: 50px;
+}
+
+.about-p {
+    font-size: 19px;
+    color: rgba(253, 252, 248, 0.7);
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+.skills-mini {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #E6B36E;
+    opacity: 0.6;
+    margin-top: 40px;
+}
+
+.projects-section {
+    padding: 100px 10%;
+    background-color: #050A18;
+}
+
+.projects-header {
+    margin-bottom: 80px;
+}
+
+.section-subtitle {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #E6B36E;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 300;
+}
+
+/* الـ Grid لـ 5 مشاريع */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 60px 40px; /* مسافة كبيرة بين الصفوف عشان "تتنفس" */
+}
+
+.project-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.projects-grid {
+    display: grid !important;
+    /* ده هيخلي الموبايل 1، التابلت 2، واللابتوب 3 مشاريع في الصف */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; 
+    gap: 40px; 
+    width: 100%;
+}
+
+/* لو لسه ظاهرين اتنين بس بالعرض، جربي الكود ده لجبر الـ 3 أعمدة في الشاشات الكبيرة */
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* الـ Overlay اللي بيظهر فيه اللينك */
+.project-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(5, 10, 24, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-card:hover img {
+    transform: scale(1.1);
+}
+
+.project-link {
+    color: #FDFCF8;
+    text-decoration: none;
+    border: 1px solid #FDFCF8;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.project-link:hover {
+    background: #E6B36E;
+    border-color: #E6B36E;
+    color: #050A18;
+}
+
+.project-info {
+    margin-top: 25px;
+}
+
+.project-info h4 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.project-info p {
+    font-size: 14px;
+    color: rgba(253, 252, 248, 0.5);
+}
+
+/* زرار See More */
+.more-works-wrapper {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.more-btn {
+    font-size: 18px;
+    color: #E6B36E;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.more-btn .arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.more-btn:hover .arrow {
+    transform: translateX(10px);
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 50px 30px;
+}
+
+.project-img-container img {
+    width: 100% !important;
+    height: 100% !important; /* جبر الصورة تأخد طول المربع بالظبط */
+    object-fit: cover !important; /* دي أهم خاصية: بتقص الزيادات وتخلي الصورة متناسقة */
+    object-position: top; /* عشان يركز على الجزء اللي فوق من السكرين شوت (اللوجو والعنوان) */
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.project-img-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* بيخلي الكونتينر مربع */
+    border-radius: 30px; 
+    overflow: hidden; /* بيقص أي حاجة تطلع بره المربع */
+    background-color: #0A1128;
+}
+
+.empty-state {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0A1128;
+    color: rgba(230, 179, 110, 0.2);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* خط متقطع بيدي شكل جمالي للمربعات الفاضية */
+    border: 1px dashed rgba(230, 179, 110, 0.1); 
+    border-radius: 30px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* تعديل المسافات بين المربعات */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px; 
+    width: 100%;
+}
+
+/* لو لسه ظاهرين اتنين بس بالعرض، جربي الكود ده لجبر الـ 3 أعمدة في الشاشات الكبيرة */
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* --- Contact CTA Dark Style --- */
+.contact-cta-dark {
+    padding: 120px 10%;
+    background-color: #050A18; /* نفس لون موقعك */
+    text-align: center;
+    border-top: 1px solid rgba(230, 179, 110, 0.1); /* خط رفيع جداً للفصل */
+}
+
+.contact-cta-dark h2 {
+    font-size: clamp(35px, 6vw, 70px);
+    font-weight: 300;
+    color: #FDFCF8;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.contact-cta-dark p {
+    font-size: 18px;
+    color: rgba(253, 252, 248, 0.6);
+    margin-bottom: 50px;
+}
+
+.cta-email-big {
+    font-size: clamp(24px, 4vw, 50px);
+    color: #E6B36E; /* الدهبي بتاعنا */
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    transition: 0.4s ease;
+}
+
+.cta-email-big:hover {
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(230, 179, 110, 0.2); /* توهج خفيف عند الهوفر */
+}
+
+/* --- Dark Footer Pills --- */
+.portfolio-footer {
+    padding: 60px 10% 40px;
+    background-color: #050A18;
+    text-align: center;
+}
+
+.footer-nav-pills {
+    display: inline-flex;
+    gap: 20px;
+    background: rgba(230, 179, 110, 0.05); /* لمسة دهبي خفيفة جداً للخلفية */
+    padding: 12px 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(230, 179, 110, 0.1);
+}
+
+.footer-nav-pills a {
+    color: #FDFCF8;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.footer-nav-pills a:hover {
+    opacity: 1;
+    color: #E6B36E;
+}
+
+.copyright {
+    font-size: 11px;
+    color: rgba(253, 252, 248, 0.3);
+    letter-spacing: 1px;
+}
+
+
+/* تنسيقات صفحه ال see more */
+.back-nav {
+    padding: 40px 10%;
+}
+
+.back-nav a {
+    color: #E6B36E;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.back-nav a:hover {
+    padding-left: 10px;
+}
+
+.all-works-section {
+    padding: 50px 10% 100px;
+}
+
+
+
+/* Services Section */
+.services-section {
+    padding: 100px 10%;
+    background: transparent;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.service-item {
+    border-top: 1px solid rgba(230, 179, 110, 0.2);
+    padding-top: 30px;
+}
+
+.service-item h3 {
+    font-size: 20px;
+    color: #E6B36E;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.service-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(253, 252, 248, 0.7);
+}
+
+/* Skills Tags */
+.skills-container {
+    margin-top: 80px;
+    border-top: 1px solid rgba(253, 252, 248, 0.05);
+    padding-top: 40px;
+}
+
+.skills-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #E6B36E;
+    margin-bottom: 25px;
+}
+
+.skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.skill-tag {
+    padding: 8px 20px;
+    border: 1px solid rgba(253, 252, 248, 0.1);
+    border-radius: 50px;
+    font-size: 13px;
+    color: #FDFCF8;
+    transition: 0.3s;
+    background: rgba(253, 252, 248, 0.02);
+}
+
+.skill-tag:hover {
+    border-color: #E6B36E;
+    color: #E6B36E;
+    transform: translateY(-5px);
+}
